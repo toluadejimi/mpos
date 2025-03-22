@@ -138,33 +138,33 @@ if (isset($request->post['submit']))
 						if (!in_array($pro_data['product_type'], array('standard', 'service'))) {
 							throw new Exception(trans('error_invalid_product_type').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
 						}
-						if (!in_array($pro_data['barcode_symbology'], array('code25','code39','code128','ean5','ean13','upca','upce'))) {
-							throw new Exception(trans('error_invalid_barcode_symbology').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['category_id']) {
-							throw new Exception(trans('error_invalid_category_slug').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['unit_id']) {
-							throw new Exception(trans('error_invalid_unit_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['taxrate_id']) {
-							throw new Exception(trans('error_invalid_taxrate_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!in_array($pro_data['tax_method'], array('inclusive','exclusive'))) {
-							throw new Exception(trans('error_invalid_tax_method').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['sup_id']) {
-							throw new Exception(trans('error_invalid_supplier_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['brand_id']) {
-							throw new Exception(trans('error_invalid_brand_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['box_id']) {
-							throw new Exception(trans('error_invalid_box_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
-						if (!$pro_data['alert_quantity'] < 0) {
-							throw new Exception(trans('error_invalid_alert_quantity').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-						}
+//						if (!in_array($pro_data['barcode_symbology'], array('code25','code39','code128','ean5','ean13','upca','upce'))) {
+//							throw new Exception(trans('error_invalid_barcode_symbology').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['category_id']) {
+//							throw new Exception(trans('error_invalid_category_slug').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['unit_id']) {
+//							throw new Exception(trans('error_invalid_unit_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['taxrate_id']) {
+//							throw new Exception(trans('error_invalid_taxrate_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!in_array($pro_data['tax_method'], array('inclusive','exclusive'))) {
+//							throw new Exception(trans('error_invalid_tax_method').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['sup_id']) {
+//							throw new Exception(trans('error_invalid_supplier_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['brand_id']) {
+//							throw new Exception(trans('error_invalid_brand_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['box_id']) {
+//							throw new Exception(trans('error_invalid_box_code').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
+//						if (!$pro_data['alert_quantity'] < 0) {
+//							throw new Exception(trans('error_invalid_alert_quantity').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//						}
 						if (!$pro_data['sell_price']) {
 							throw new Exception(trans('error_invalid_sell_price').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
 						}
