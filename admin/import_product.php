@@ -107,7 +107,7 @@ if (isset($request->post['submit']))
 							$store_code_names = array_unique(array($store_code_names));
 						}
 						$pro_data['category_id'] = get_category_id_by_slug($Row[7]);
-						$pro_data['unit_id'] = get_unit_id_by_code($Row[8]);
+						$pro_data['unit_id'] = 1;
 						$pro_data['taxrate_id'] = get_taxrate_id_by_code($Row[9]);
 						$pro_data['tax_method'] = isset($Row[10]) ? $Row[10] : 'inclusive';
 						$pro_data['sup_id'] = get_supplier_id_by_code($Row[11]);
@@ -220,7 +220,7 @@ if (isset($request->post['submit']))
       						}
 							
 							$statement = db()->prepare("UPDATE `products` SET  `p_type` = ?, `p_code` = ?, `hsn_code` = ?, `barcode_symbology` = ?, `p_name` = ?, `category_id` = ?, `unit_id` = ?, `p_image` = ?, `description` = ? WHERE `p_id` = ?");
-			      			$statement->execute(array($pro_data['product_type'], $p_code, $pro_data['hsn_code'], $pro_data['barcode_symbology'], $pro_data['product_name'], $pro_data['category_id'], $pro_data['unit_id'], $pro_data['thumbnail'], $pro_data['description'], $product_id));
+			      			$statement->execute(array($pro_data['product_type'], $p_code, $pro_data['hsn_code'], $pro_data['barcode_symbology'], $pro_data['product_name'], $pro_data['category_id'], 1, $pro_data['thumbnail'], $pro_data['description'], $product_id));
 
 							if ($statement) {
 								$statement = db()->prepare("DELETE FROM `product_to_store` WHERE `product_id` = ?");
