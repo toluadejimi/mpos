@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/_inc/bridges/php-local" isTestSource="false" packagePrefix="AngularFilemanager" />
+      <sourceFolder url="file://$MODULE_DIR$/_inc/bridges/php/includes" isTestSource="false" packagePrefix="PHPClassic" />
+      <sourceFolder url="file://$MODULE_DIR$/_inc/sms/_inc" isTestSource="false" packagePrefix="SMSGateway" />
+      <sourceFolder url="file://$MODULE_DIR$/_inc/sms/_inc/gateway/Clickatell/src" isTestSource="false" packagePrefix="Clickatell" />
+      <sourceFolder url="file://$MODULE_DIR$/_inc/sms/_inc/gateway/Clickatell/test" isTestSource="true" packagePrefix="Clickatell" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
