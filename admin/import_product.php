@@ -129,11 +129,11 @@ if (isset($request->post['submit']))
 						if (!$pro_data['code']) {
 							throw new Exception(trans('error_product_code'));
 						}
-						foreach ($store_code_names as $store_code) {
-							if (!get_store_id_by_code($store_code)) {
-								throw new Exception(trans('store_code '.$store_code.' is not valid!').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
-							}
-						}
+//						foreach ($store_code_names as $store_code) {
+//							if (!get_store_id_by_code($store_code)) {
+//								throw new Exception(trans('store_code '.$store_code.' is not valid!').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
+//							}
+//						}
 
 						if (!in_array($pro_data['product_type'], array('standard', 'service'))) {
 							throw new Exception(trans('error_invalid_product_type').' ('.$pro_data['product_name'].'-'.$pro_data['code'].')');
