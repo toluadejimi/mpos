@@ -19,7 +19,7 @@ class ModelProduct extends Model
 		$purchase_price = isset($data['purchase_price']) ? (float)$data['purchase_price'] : 0;
 		$hsn_code = isset($data['hsn_code']) ? $data['hsn_code'] : NULL;
     	$statement = $this->db->prepare("INSERT INTO `products` (p_type, p_name, p_code, hsn_code, barcode_symbology, category_id, unit_id, p_image, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['p_type'], $data['p_name'], $data['p_code'], $hsn_code, $data['barcode_symbology'], $data['category_id'], $data['unit_id'], $data['p_image'], $data['description']));
+    	$statement->execute(array($data['p_type'], $data['p_name'], $data['p_code'], 01, $data['barcode_symbology'], $data['category_id'], $data['unit_id'], $data['p_image'], $data['description']));
     	$preference = isset($data['preference']) && !empty($data['preference']) ? serialize($data['preference']) : serialize(array());
 
     	$product_id = $this->db->lastInsertId();
