@@ -155,11 +155,13 @@ class User
 
     public function updatePreference($preference, $user_id)
     {
-        if (empty($user_id) || !is_numeric($user_id)) {
-            throw new Exception("Invalid user ID in updatePreference() | $user_id");
+        if (!empty($user_id)) {
+            $statement = $this->db->prepare("UPDATE `users` SET `preference` = ? WHERE `id` = ?");
+            $statement->execute(array(serialize($preference), (int)$user_id));
         }
-        $statement = $this->db->prepare("UPDATE `users` SET `preference` = ? WHERE `id` = ?");
-        $statement->execute(array(serialize($preference), (int)$user_id));
+
+
+
     }
 
 	public function getPreference($index, $default = null) 
