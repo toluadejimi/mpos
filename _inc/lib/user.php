@@ -156,7 +156,7 @@ class User
 	public function updatePreference($preference, $user_id)
 	{
 		$statement = $this->db->prepare("UPDATE `users` SET `preference` = ? WHERE `id` = ? ");
-	   // $statement->execute(array(serialize($preference), $user_id));
+	    $statement->execute(array(serialize($preference), $user_id));
 	}
 
 	public function getPreference($index, $default = null) 
