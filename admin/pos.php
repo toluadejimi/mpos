@@ -132,7 +132,7 @@ if ($order_printer_ids) {
 	<!-- This is Mandatory -->
 	<style type="text/css">
 		body::after { 
-			content: ""; background: url(../assets/itsolution24/img/pos/patterns/<?php echo $user->getPreference('pos_pattern') ? $user->getPreference('pos_pattern') : 'armysuit.jpg'; ?>) repeat repeat;opacity: 0.4;filter: alpha(opacity=40);top: 0;left: 0;bottom: 0;right: 0;position: absolute;z-index: -1;
+			content: ""; background: url(../assets/itsolution24/img/pos/patterns/<?php echo $user->getPreference('pos_pattern') ? $user->getPreference('pos_pattern') : 'space.jpg'; ?>) repeat repeat;opacity: 0.4;filter: alpha(opacity=40);top: 0;left: 0;bottom: 0;right: 0;position: absolute;z-index: -1;
 		}
 		.modal-lg .modal-content {
 			border-color: #ffffff;
