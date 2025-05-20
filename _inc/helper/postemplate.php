@@ -18,3 +18,7 @@ function get_the_postemplate($id, $field = null)
 	}
 	return $postemplate;
 }
+
+
+
+

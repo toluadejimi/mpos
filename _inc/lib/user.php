@@ -153,11 +153,13 @@ class User
 		return $statement->fetch(PDO::FETCH_ASSOC)['name'];
 	}
 
-	public function updatePreference($preference, $user_id)
-	{
-		$statement = $this->db->prepare("UPDATE `users` SET `preference` = ? WHERE `id` = ? ");
-	    $statement->execute(array(serialize($preference), $user_id));
-	}
+    public function updatePreference($preference, $user_id)
+    {
+        $user_id = (int) $user_id;  // force integer
+
+        $statement = $this->db->prepare("UPDATE `users` SET `preference` = ? WHERE `id` = ? ");
+        $statement->execute(array(serialize($preference), $user_id));
+    }
 
 	public function getPreference($index, $default = null) 
 	{
