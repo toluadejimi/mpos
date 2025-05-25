@@ -18,8 +18,8 @@ class ModelProduct extends Model
 	{
 		$purchase_price = isset($data['purchase_price']) ? (float)$data['purchase_price'] : 0;
 		$hsn_code = isset($data['hsn_code']) ? $data['hsn_code'] : NULL;
-    	$statement = $this->db->prepare("INSERT INTO `products` (p_type, p_name, p_code, hsn_code, barcode_symbology, category_id, unit_id, p_image, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['p_type'], $data['p_name'], $data['p_code'], 01, $data['barcode_symbology'], $data['category_id'], $data['unit_id'], $data['p_image'], $data['description']));
+    	$statement = $this->db->prepare("INSERT INTO `products` (p_type, p_name, p_code, hsn_code, price, barcode_symbology, category_id, unit_id, p_image, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$statement->execute(array($data['p_type'], $data['p_name'], $data['p_code'], 01, $data['sell_price'], $data['barcode_symbology'], $data['category_id'], $data['unit_id'], $data['p_image'], $data['description']));
     	$preference = isset($data['preference']) && !empty($data['preference']) ? serialize($data['preference']) : serialize(array());
 
     	$product_id = $this->db->lastInsertId();
@@ -37,15 +37,6 @@ class ModelProduct extends Model
 					$statement->execute(array((int)$data['unit_id'], $store_id));
 			    }
 
-			//--- box to store ---//
-
-				$statement = $this->db->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-			    $statement->execute(array($store_id, $data['box_id']));
-			    $box = $statement->fetch(PDO::FETCH_ASSOC);
-			    if (!$box) {
-			    	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$data['box_id'], $store_id));
-			    }
 
 			//--- supplier to store ---//
 
@@ -69,10 +60,8 @@ class ModelProduct extends Model
 
 			//--- product to store ---//
 
-
-
 				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-				$statement->execute(array($product_id, $store_id, $purchase_price, $data['sell_price'], $data['sup_id'], 0, $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+				$statement->execute(array($product_id, $store_id, $purchase_price, $data['sell_price'], $data['sup_id'], 0, 0, $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 			}
 		}
 
