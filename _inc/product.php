@@ -144,7 +144,10 @@ function validate_product_code($request, $p_id = NULL)
 // Create product
 if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE')
 {
-  try {
+
+
+
+    try {
 
     // Check create permission
     if (user_group_id() != 1 && !has_permission('access', 'create_product')) {
@@ -161,7 +164,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     validate_existance($request);
 
     $Hooks->do_action('Before_Create_Product', $request);
-  
+
+
     // Insert product into database    
     $product_id = $product_model->addProduct($request->post);
 
@@ -186,9 +190,13 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 // Update product
 if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE')
 {
-  try {
 
-    // Check update permission
+
+
+    try {
+
+
+        // Check update permission
     if (user_group_id() != 1 && !has_permission('access', 'update_product')) {
       throw new Exception(trans('error_update_permission'));
     }
@@ -215,9 +223,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     validate_existance($request, $p_id);
 
     $Hooks->do_action('Before_Update_Product', $p_id);
-    
-    // Edit product        
+
+
+    // Edit product
     $product_model->editProduct($p_id, $request->post);
+
 
     $Hooks->do_action('After_Update_Product', $p_id);
 
@@ -225,14 +235,14 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     echo json_encode(array('msg' => trans('text_product_updated'), 'id' => $p_id));
     exit();
 
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // Delete product
 if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE')

@@ -14,7 +14,7 @@
 */
 class ModelProduct extends Model 
 {
-	public function addProduct($data) 
+	public function addProduct($data)
 	{
 		$purchase_price = isset($data['purchase_price']) ? (float)$data['purchase_price'] : 0;
 		$hsn_code = isset($data['hsn_code']) ? $data['hsn_code'] : NULL;
@@ -45,7 +45,7 @@ class ModelProduct extends Model
 			    if (!$box) {
 			    	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
 					$statement->execute(array((int)$data['box_id'], $store_id));
-			    } 
+			    }
 
 			//--- supplier to store ---//
 
@@ -69,8 +69,10 @@ class ModelProduct extends Model
 
 			//--- product to store ---//
 
+
+
 				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-				$statement->execute(array($product_id, $store_id, $purchase_price, $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+				$statement->execute(array($product_id, $store_id, $purchase_price, $data['sell_price'], $data['sup_id'], 0, $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 			}
 		}
 
@@ -111,6 +113,10 @@ class ModelProduct extends Model
 
 	public function editProduct($product_id, $data) 
 	{
+
+
+
+
 		// Update product infomation
 		$hsn_code = isset($data['hsn_code']) ? $data['hsn_code'] : NULL;
     	$statement = $this->db->prepare("UPDATE `products` SET `p_type` = ?, `p_name` = ?, `p_code` = ?, `hsn_code` = ?, `barcode_symbology` = ?, `category_id` = ?, `unit_id` = ?, `p_image` = ?, `description` = ?  WHERE `p_id` = ?");
@@ -181,12 +187,12 @@ class ModelProduct extends Model
 			    $product = $statement->fetch(PDO::FETCH_ASSOC);
 			    if (!$product) {
 			    	$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-					$statement->execute(array($product_id, $store_id, $data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+					$statement->execute(array($product_id, $store_id, $data['sup_id'], 1, $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 			    
 			    } else {
 
 			    	$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
-					$statement->execute(array($data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_id, $product_id));
+					$statement->execute(array($data['sup_id'], 1, 1, $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], date('Y-m-d'), $data['alert_quantity'], $store_id, $product_id));
 			    }
 
 			    $store_ids[] = $store_id;
